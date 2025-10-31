@@ -17,6 +17,7 @@ const config = {
   showEmoteCooldownRef: new Date(),
   streakCooldown: new Date().getTime(),
   emotes: [],
+  streakSizeMultiplier: Number(url.searchParams.get("streakSizeMultiplier") || 0.1),
 };
 
 const getEmotes = async () => {
@@ -264,10 +265,11 @@ const streakEvent = () => {
       )
       .appendTo("#main");
 
+    var sizeFactor = 1.0 + config.streakSizeMultiplier * (config.currentStreak.streak - config.minStreak);
     gsap.to("#main", 0.15, {
-      scaleX: 1.2,
-      scaleY: 1.2,
-      onComplete: () => gsap.to("#main", 0.15, { scaleX: 1, scaleY: 1 }),
+      scaleX: sizeFactor + 0.2,
+      scaleY: sizeFactor + 0.2,
+      onComplete: () => gsap.to("#main", 0.15, { scaleX: sizeFactor, scaleY: sizeFactor }),
     });
 
     config.streakCooldown = new Date().getTime();
