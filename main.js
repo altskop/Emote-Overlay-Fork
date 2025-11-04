@@ -10,7 +10,7 @@ const config = {
     url.searchParams.get("showEmoteSizeMultiplier") || 1
   ),
   minStreak: Number(url.searchParams.get("minStreak") || 5),
-  emoteLocation: Number(url.searchParams.get("emoteLocation") || 1),
+  emoteLocation: Number(url.searchParams.get("emoteLocation") || 0),
   emoteStreakEndingText:
     url.searchParams.get("emoteStreakText")?.replace(/(<([^>]+)>)/gi, "") ??
     "streak!",
@@ -237,6 +237,10 @@ const streakEvent = () => {
 
     switch (config.emoteLocation) {
       default:
+      case 0:
+        $("#main").css("top", "35%");
+        $("#main").css("left", "35%");
+        break;
       case 1:
         $("#main").css("top", "600");
         $("#main").css("left", "35");
