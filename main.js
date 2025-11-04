@@ -262,7 +262,7 @@ const streakEvent = () => {
     $("<img />", { src: config.currentStreak.url }).appendTo("#main");
     $("#main")
       .append(
-        " 󠀀  󠀀  x" +
+        "   x" +
           config.currentStreak.streak +
           " " +
           config.emoteStreakEndingText
